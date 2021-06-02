@@ -29,6 +29,30 @@ class ValueFunctionExercisesTest extends AnyFunSuite with ScalaCheckDrivenProper
     }
   }
 
+  test("secret returns string of * the same length as the input") {
+      assert(secret("hallo123") == "********")
+  }
+
+  test("secret returns a string the same length as the input") {
+    forAll { (text: String) =>
+      secret(text).length == text.length
+    }
+  }
+
+  test("secret(text) returns the same string as its product again secrefied ") {
+    forAll { (text: String) =>
+      val once = secret(text)
+      val twice = secret(secret(text))
+      assert(once == twice)
+    }
+  }
+
+  test("isValideUsername") {
+    forAll { (username: String) =>
+      assert(isValidUsername(username.reverse) == isValidUsername(username))
+    }
+  }
+
   ///////////////////////
   // Exercise 2: Point
   ///////////////////////

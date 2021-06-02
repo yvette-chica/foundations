@@ -17,7 +17,7 @@ object ValueFunctionExercises {
   // such as secret("Welcome123") == "**********"
   // Note: Try to use a higher-order function from the String API
   def secret(text: String): String =
-    ???
+    text.map(_ => '*')
 
   // 1c. Implement `isValidUsernameCharacter` which checks if a character is suitable for a username.
   // We accept:
@@ -29,14 +29,15 @@ object ValueFunctionExercises {
   // but          isValidUsernameCharacter('^') == false
   // Note: You might find some useful helper methods on `char`.
   def isValidUsernameCharacter(char: Char): Boolean =
-    ???
+    char.isLetterOrDigit || char == '-' || char == '_'
 
   // 1d. Implement `isValidUsername` which checks that all the characters in a String are valid
   // such as isValidUsername("john-doe") == true
   // but     isValidUsername("*john*") == false
   // Note: Try to use `isValidUsernameCharacter` and a higher-order function from the String API.
   def isValidUsername(username: String): Boolean =
-    ???
+//    username.foreach(c => if (isValidUsernameCharacter(c)))
+  username.forall(c => isValidUsernameCharacter(c))
 
   ///////////////////////
   // Exercise 2: Point
